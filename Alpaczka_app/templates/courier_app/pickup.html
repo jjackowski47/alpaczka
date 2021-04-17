@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <title>Courier</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="styles/courier.css" rel="stylesheet" type="text/css" />
+    <link href="images/alpaca.svg" rel="shortcut icon" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.min.js"></script>
+    <script src="/scripts/pickup_socket.js"></script>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <nav>
+        <div class="brand-name">
+          <img
+            class="brand-logo"
+            src="images/alpaca.svg"
+            alt="Alpaka logo"
+            height="50"
+            width="50"
+          /><a href="/">AlPaczka</a>
+        </div>
+        <ul>
+          {% if isLogged %}
+          <li><a href="parcels">Paczki</a></li>
+          <li><a href="pickup">Odbierz</a></li>
+          <li><a href="generateCode">Wygeneruj kod</a></li>
+          <li><a href="logout">Wyloguj</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+    <main class="site-content">
+      <section class="main-content">
+        <section class="form-section">
+          <h2>Odbierz paczkę</h2>
+          <form
+            id="pickup-form"
+            class="registration-form"
+            action="https://localhost:7002/pickup"
+            method="POST"
+          >
+            <ul class="wrapper">
+              <li class="form-row">
+                <label for="parcel_id">Identyfikator paczki</label
+                ><input
+                  id = "parcel-id-input"
+                  name="parcel_id"
+                  class="transparent-input"
+                  type="text"
+                />
+              </li>
+              <li class="form-row">
+                <input id="submit-btn" type="submit" value="Odbierz" />
+              </li>
+            </ul>
+          </form>
+        </section>
+        {% if pickupSuccess %}
+        <div class="correct-id"><p>Paczka została poprawnie odebrana</p></div>
+        {% elif wrongId %}
+        <div class="wrong-id"><p>Podano błędny identyfikator</p></div>
+        {% elif wrongStatus %}
+        <div class="wrong-id">
+          <p>Paczka została już odebrana od nadawcy</p>
+        </div>
+        {%endif%}
+      </section>
+    </main>
+    <footer class="site-footer">
+      <hr />
+      <p>&copy; 2020 Jakub Jackowski</p>
+    </footer>
+  </body>
+</html>

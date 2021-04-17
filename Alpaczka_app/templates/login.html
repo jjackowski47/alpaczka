@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <title>AlPaczka</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="styles/login.css" rel="stylesheet" type="text/css" />
+    <link href="images/alpaca.svg" rel="shortcut icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <nav>
+        <div class="brand-name">
+          <img
+            class="brand-logo"
+            src="images/alpaca.svg"
+            alt="Alpaka logo"
+            height="50"
+            width="50"
+          /><a href="/">AlPaczka</a>
+        </div>
+        <ul>
+          <li><a href="/">Strona główna</a></li>
+          {% if not isLogged %}
+          <li><a href="registration">Rejestracja</a></li>
+          <li><a href="login">Logowanie</a></li>
+          {% else %}
+          <li><a href="package">Paczki</a></li>
+          <li><a href="logout">Wyloguj</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+    <main class="site-content">
+      <section class="form-section">
+        <h2>Logowanie</h2>
+        <form
+          id="login-form"
+          class="registration-form"
+          action="https://localhost:7000/login"
+          method="POST"
+        >
+          <ul class="wrapper">
+            <li class="form-row">
+              <label for="login" class="required">Login</label>
+              <input
+                class="transparent-input"
+                id="login"
+                type="text"
+                name="login"
+                pattern="^[a-zA-Z]{5,}$"
+                required
+              />
+            </li>
+            <li class="form-row">
+              <label for="password" class="required">Hasło</label>
+              <input
+                class="transparent-input"
+                id="password"
+                type="password"
+                name="password"
+                pattern="^(?=.{8,}$)(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).*$"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <div class="login-btn-row">
+              	<input id="button-reg-form" type="submit" value="Zaloguj" />
+              	<button onclick="location.href='https://localhost:7000/oauthLogin'" class="OAuth-btn" typr="button">Zaloguj z OAuth 2.0</button>
+              </div>
+            </li>
+          </ul>
+        </form>
+      </section>
+      <p class="account-question">
+        Nie masz jeszcze konta? <a href="/registration">Zarejestruj się.</a>
+      </p>
+      {% if sessionExpired %}
+      <p class="error-info">
+        Przepraszamy, twoja sesja wygasła, zaloguj się ponownie.
+      </p>
+      {% elif wrongCredentials %}
+      <p class="error-info">Wprowadzono błędny login lub hasło</p>
+      {% endif %}
+    </main>
+    <footer class="site-footer">
+      <hr />
+      <p>&copy; 2020 Jakub Jackowski</p>
+    </footer>
+  </body>
+</html>

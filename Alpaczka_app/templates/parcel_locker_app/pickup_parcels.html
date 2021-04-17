@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <title>Parcel Locker</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="styles/parcel_locker.css" rel="stylesheet" type="text/css" />
+    <link href="images/alpaca.svg" rel="shortcut icon" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.min.js"></script>
+    <script src="scripts/parcel_locker.js"></script>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <nav>
+        <div class="brand-name">
+          <img
+            class="brand-logo"
+            src="images/alpaca.svg"
+            alt="Alpaka logo"
+            height="50"
+            width="50"
+          /><a href="/">AlPaczka</a>
+        </div>
+      </nav>
+    </header>
+    <main class="site-content">
+      <section>
+        {% if length %}<h3>Wybierz paczki, które chcesz wyjąć</h2>{%endif%}
+        <h4>
+          Lista paczek w paczkomacie{% if length %} ( liczba wszystkich paczek:
+          {{length}} ){%endif%}
+        </h4>
+        {% if files|length %}
+        <table id="pickup-table" class="shipments-table">
+          <thead>
+            <tr>
+              <td>Lp.</td>
+              <td>Identyfikator paczki</td>
+              <td>Data utworzenia</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for filename in files %}
+            <tr>
+              <td>{{ loop.index0+1+start }}</td>
+              <td>{{ filename["uid"] }}</td>
+              <td>{{ filename["creation_date"] }}</td>
+              <td><input id="{{filename['uid']}}" type="checkbox" /></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <nav class="pagination-nav">
+          {% if prev %}
+          <a href="https://localhost:7003{{prev}}">
+            <button class="prev-btn">Poprzednia strona</button>
+          </a>
+          {% endif %} {% if next %}
+          <a class="next-btn-a" href="https://localhost:7003{{next}}">
+            <button class="next-btn">Nastepna strona</button>
+          </a>
+          {% endif %}
+        </nav>
+        <form id="parcels-pickup-form" class="submit-btn" action="#">
+              <input type="submit" value="Zatwierdź swój wybór"></input>
+        </form>
+        {% else %}
+        <p>Aktualnie nie ma żadnych paczek.</p>
+        {% endif %}
+      </section>
+    </main>
+    <footer class="site-footer">
+      <hr />
+      <p>&copy; 2020 Jakub Jackowski</p>
+    </footer>
+  </body>
+</html>

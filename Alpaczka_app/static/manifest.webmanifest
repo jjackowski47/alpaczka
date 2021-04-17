@@ -1,0 +1,32 @@
+{
+    "name": "AlPaczka Courier App",
+    "short_name": "AlPaczka",
+    "description": "Delivery service for couriers",
+    "icons": [
+      {
+        "src": "/images/alpaca_icon-48-48.png",
+        "type": "image/png",
+        "sizes": "48x48"
+      },
+      {
+        "src": "/images/alpaca_icon-90-90.png",
+        "type": "image/png",
+        "sizes": "90x90"
+      },
+      {
+        "src": "/images/alpaca_icon-256-256.png",
+        "type": "image/png",
+        "sizes": "256x256"
+      },
+      {
+        "src": "/images/alpaca_icon-512-512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "theme_color": "#2bd095",
+    "background_color": "#252933",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/"
+}

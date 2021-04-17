@@ -1,0 +1,9 @@
+Flask
+gunicorn
+redis
+pyopenssl
+fpdf
+flask-jwt-extended
+authlib
+requests
+flask-socketio

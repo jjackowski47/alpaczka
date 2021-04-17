@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <title>Courier</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link href="styles/courier.css" rel="stylesheet" type="text/css" />
+    <link href="images/alpaca.svg" rel="shortcut icon" />
+    <script src="/scripts/courier_pwa_script.js"></script>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <nav>
+        <div class="brand-name">
+          <img
+            class="brand-logo"
+            src="images/alpaca.svg"
+            alt="Alpaka logo"
+            height="50"
+            width="50"
+          /><a href="/">AlPaczka</a>
+        </div>
+        <ul>
+          {% if isLogged %}
+          <li><a href="parcels">Paczki</a></li>
+          <li><a href="pickup">Odbierz</a></li>
+          <li><a href="generateCode">Wygeneruj kod</a></li>
+          <li><a href="logout">Wyloguj</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+    <main class="site-content">
+      <section class="form-section">
+        <h2>Logowanie</h2>
+        <form
+          id="login-form"
+          class="registration-form"
+          action="https://localhost:7002/login"
+          method="POST"
+        >
+          <ul class="wrapper">
+            <li class="form-row">
+              <label for="login" class="required">Login</label>
+              <input
+                class="transparent-input"
+                id="login"
+                type="text"
+                name="login"
+                pattern="^[a-zA-Z0-9]{5,}$"
+                required
+              />
+            </li>
+            <li class="form-row">
+              <label for="password" class="required">Hasło</label>
+              <input
+                class="transparent-input"
+                id="password"
+                type="password"
+                name="password"
+                pattern="^(?=.{8,}$)(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).*$"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <div class="login-btn-row">
+              	<input id="button-reg-form" type="submit" value="Zaloguj" />
+              	<button onclick="location.href='https://localhost:7002/oauthLogin'" class="OAuth-btn" typr="button">Zaloguj z OAuth 2.0</button>
+              </div>
+            </li>
+          </ul>
+        </form>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <hr />
+      <p>&copy; 2020 Jakub Jackowski</p>
+    </footer>
+  </body>
+</html>

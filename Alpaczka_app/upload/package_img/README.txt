@@ -1,0 +1,1 @@
+In this directory waybill photos will be saved.

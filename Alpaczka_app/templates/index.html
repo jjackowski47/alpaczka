@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <title>AlPaczka</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="styles/home.css" rel="stylesheet" type="text/css" />
+    <link href="images/alpaca.svg" rel="shortcut icon" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="scripts/script.js" async></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav>
+        <div class="brand-name">
+          <img
+            class="brand-logo"
+            src="images/alpaca.svg"
+            alt="Alpaka logo"
+            height="50"
+            width="50"
+          /><a href="/">AlPaczka</a>
+        </div>
+        <ul>
+          <li><a href="/">Strona główna</a></li>
+          {% if not isLogged %}
+          <li><a href="registration">Rejestracja</a></li>
+          <li><a href="login">Logowanie</a></li>
+          {% else %}
+          <li><a href="package">Paczki</a></li>
+          <li><a href="logout">Wyloguj</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+    <main class="site-content">
+      <aside class="brand-info">
+        <header class="greeting">
+          <h2>Witaj na AlPaczka!</h2>
+          <img
+            src="images/side-alpaca.png"
+            alt="Alpaca looking at you from the side"
+          />
+        </header>
+        <article>
+          <h2>Czym jest AlPaczka?</h2>
+          <p>
+            AlPaczka to serwis, który pozwoli ci tanio nadać przesyłkę dokąd
+            chcesz. Oferujemy atrakcyjne abonamenty, dzięki którym zaoszczędzisz
+            czas i pieniądze. Sprawdź sam i zarejestruj się, a nie pożałujesz!
+          </p>
+        </article>
+      </aside>
+      <table class="offer-table">
+        <caption>
+          Nasza oferta
+        </caption>
+        <thead id="offer_thead">
+          <tr>
+            <td>Abonament</td>
+            <td>Maksymalna liczba<br />paczek dziennie</td>
+            <td>Dodatkowe uwagi</td>
+            <td>Cena</td>
+          </tr>
+        </thead>
+        <tbody id="offer_tbody">
+          <tr>
+            <td>Lama</td>
+            <td>1</td>
+            <td>Przynajmniej 1 paczka tygodniowo</td>
+            <td>120zł/mc</td>
+          </tr>
+          <tr>
+            <td>Suri</td>
+            <td>2</td>
+            <td>Przynajmniej 3 paczki tygodniowo</td>
+            <td>200zł/mc</td>
+          </tr>
+          <tr>
+            <td>Huacaya</td>
+            <td>3</td>
+            <td>Przynajmniej 1 paczka dziennie</td>
+            <td>270zł/mc</td>
+          </tr>
+          <tr>
+            <td>Gwanako</td>
+            <td>5</td>
+            <td>Przynajmniej 2 paczki dziennie</td>
+            <td>420zł/mc</td>
+          </tr>
+          <tr>
+            <td>Wikunia</td>
+            <td>8</td>
+            <td>Przynajmniej 2 paczki dziennie</td>
+            <td>650zł/mc</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+    <footer class="site-footer">
+      <hr />
+      <p>&copy; 2020 Jakub Jackowski</p>
+    </footer>
+  </body>
+</html>

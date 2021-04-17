@@ -1,0 +1,43 @@
+version: "3"
+services:
+  web-login:
+    build:
+      context: .
+      dockerfile: ./Docker/login/Dockerfile
+    ports: ["7000:8880"]
+    volumes: [./Alpaczka_app:/Alpaczka_app]
+    environment:
+      FLASK_ENV: development
+      LOGIN_JWT_SECRET: $LOGIN_JWT_SECRET
+      SESSION_SECRET_KEY: $SESSION_SECRET_KEY
+      OAUTH_CLIENT_SECRET: $OAUTH_CLIENT_SECRET
+  web-files:
+    build:
+      context: .
+      dockerfile: ./Docker/files/Dockerfile
+    ports: ["7001:8881"]
+    volumes: [./Alpaczka_app:/Alpaczka_app]
+    environment:
+      FLASK_ENV: development
+      LOGIN_JWT_SECRET: $LOGIN_JWT_SECRET
+  web-courier:
+    build:
+      context: .
+      dockerfile: ./Docker/courier/Dockerfile
+    ports: ["7002:8882"]
+    volumes: [./Alpaczka_app:/Alpaczka_app]
+    environment:
+      FLASK_ENV: development
+      SESSION_SECRET_KEY: $SESSION_SECRET_KEY
+      OAUTH_CLIENT_SECRET: $OAUTH_CLIENT_SECRET
+  web-parcel-locker:
+    build:
+      context: .
+      dockerfile: ./Docker/parcel_locker/Dockerfile
+    ports: ["7003:8883"]
+    volumes: [./Alpaczka_app:/Alpaczka_app]
+    environment:
+      FLASK_ENV: development
+      LOGIN_JWT_SECRET: $LOGIN_JWT_SECRET
+  redis-db:
+    image: "redis:alpine"

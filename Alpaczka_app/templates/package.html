@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <title>AlPaczka</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="styles/package.css" rel="stylesheet" type="text/css" />
+    <link href="images/alpaca.svg" rel="shortcut icon" />
+        <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.min.js"></script>
+    <script src="/scripts/package_socket.js"></script>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <nav>
+        <div class="brand-name">
+          <img
+            class="brand-logo"
+            src="images/alpaca.svg"
+            alt="Alpaka logo"
+            height="50"
+            width="50"
+          /><a href="/">AlPaczka</a>
+        </div>
+        <ul>
+          <li><a href="/">Strona główna</a></li>
+          {% if not isLogged %}
+          <li><a href="registration">Rejestracja</a></li>
+          <li><a href="login">Logowanie</a></li>
+          {% else %}
+          <li><a href="package">Paczki</a></li>
+          <li><a href="logout">Wyloguj</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+
+    <main class="site-content">
+      <section>
+  
+          <form class="new-package-btn" action="/package/form">
+              <input type="submit" value="Zarejestruj nową paczkę"></input>
+          </form>
+          <h4>Twoje listy przewozowe{% if length %} ( liczba wszystkich paczek: {{length}} ){%endif%}</h4>
+          {% if files|length %}
+          <table class="shipments-table">
+              <thead>
+                  <tr>
+                      <td>Identyfikator paczki</td>
+                      <td>Data utworzenia</td>
+                      <td>Status</td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for filename in files %}
+                  <tr>
+                      <td>{{ filename["uid"] }}</td>
+                      <td>{{ filename["creation_date"] }}</td>
+                      <td id="{{filename['uid']}}">{{ filename["status"]}}</td>
+                      <td id="{{filename['uid']+'remove-btn'}}">
+                          {% if filename["status"] == "nowa" %}
+                          <form action="https://localhost:7001/waybill/remove/{{filename["uid"]}}">
+                              <input class="remove-btn" type="submit" value="Usuń"></input>
+                          </form>
+                          {% endif %}
+                      </td>
+                      <td>
+                          <form action="https://localhost:7001/waybill/download/{{filename["uid"]}}">
+                              <input class="download-btn" type="submit" value="Pobierz"></input>
+                          </form>
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+          <nav class="pagination-nav">
+              {% if prev %}
+              <a href="https://localhost:7000{{prev}}">
+                  <button class="prev-btn">Poprzednia strona</button>
+              </a>
+              {% endif %}
+              {% if next %}
+              <a class="next-btn-a" href="https://localhost:7000{{next}}">
+                  <button class="next-btn">Nastepna strona</button>
+              </a>
+              {% endif %}
+          </nav>
+          {% else %}
+          <p>Aktualnie nie masz żadnych listów. Zarejestruj nową paczkę</p>
+          {% endif %}
+      </section>
+    </main>
+    <footer class="site-footer">
+      <hr />
+      <p>&copy; 2020 Jakub Jackowski</p>
+    </footer>
+  </body>
+</html>

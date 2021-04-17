@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <title>AlPaczka</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../styles/package_form.css" rel="stylesheet" type="text/css" />
+    <link href="../images/alpaca.svg" rel="shortcut icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <nav>
+        <div class="brand-name">
+          <img
+            class="brand-logo"
+            src="../images/alpaca.svg"
+            alt="Alpaka logo"
+            height="50"
+            width="50"
+          /><a href="/">AlPaczka</a>
+        </div>
+        <ul>
+          <li><a href="/">Strona główna</a></li>
+          {% if not isLogged %}
+          <li><a href="registration">Rejestracja</a></li>
+          <li><a href="login">Logowanie</a></li>
+          {% else %}
+          <li><a href="../package">Paczki</a></li>
+          <li><a href="logout">Wyloguj</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+    <main class="site-content">
+      <section class="form-section">
+        <form
+          id="form"
+          action="https://localhost:7000/register_package"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <ul class="wrapper">
+            <li class="form-row">
+              <label for="package_photo">Zdjęcie paczki</label>
+              <input
+                class="transparent-input"
+                id="package_photo"
+                type="file"
+                name="package_photo"
+                accept="image/png, image/jpeg"
+                required
+              />
+            </li>
+            <li class="form-row form-header">
+              <h3>Dane nadawcy</h3>
+            </li>
+            <li class="form-row">
+              <label for="sender_name">Imię</label>
+              <input
+                class="transparent-input"
+                id="sender_name"
+                pattern="^[A-Z]{1}[a-z]+$"
+                title="Wprowadź poprawne imię"
+                type="text"
+                name="sender_name"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <label for="sender_surname">Nazwisko</label>
+              <input
+                class="transparent-input"
+                id="sender_surname"
+                pattern="^[A-Z]{1}[a-z]+$"
+                title="Wprowadź poprawne nazwisko"
+                type="text"
+                name="sender_surname"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <label for="sender_street">Ulica</label>
+              <input
+                class="transparent-input"
+                id="sender_street"
+                pattern="^[A-Z]{1}[a-z 0-9]+$"
+                title="Wprowadź poprawną ulicę"
+                type="text"
+                name="sender_street"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <label for="sender_city">Miasto</label>
+              <input
+                class="transparent-input"
+                id="sender_city"
+                pattern="^[A-Z]{1}[a-z]+$"
+                title="Wprowadź poprawne miasto"
+                type="text"
+                name="sender_city"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <label for="sender_postal_code">Kod pocztowy</label>
+              <input
+                class="transparent-input"
+                id="sender_postal_code"
+                pattern="^([0-9]{2})([\-]{1}[0-9]{3})?$"
+                title="Wprowadź poprawny kod pocztowy"
+                type="text"
+                name="sender_postal_code"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <label for="sender_country">Kraj</label>
+              <input
+                class="transparent-input"
+                id="sender_country"
+                pattern="^[A-Z]{1}[a-z]+$"
+                title="Wprowadź poprawny kraj"
+                type="text"
+                name="sender_country"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <label for="sender_phone_number">Numer telefonu</label>
+              <input
+                class="transparent-input"
+                id="sender_phone_number"
+                pattern="^[0-9 ]+$"
+                title="Wprowadź poprawny numer telefonu"
+                type="text"
+                name="sender_phone_number"
+                required
+              />
+            </li>
+            <li class="form-row form-header">
+              <h3>Dane odbiorcy</h3>
+            </li>
+            <li class="form-row">
+              <label for="recipient_name">Imię</label>
+              <input
+                class="transparent-input"
+                id="recipient_name"
+                pattern="^[A-Z]{1}[a-z]+$"
+                title="Wprowadź poprawne imię"
+                type="text"
+                name="recipient_name"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <label for="recipient_surname">Nazwisko</label>
+              <input
+                class="transparent-input"
+                id="recipient_surname"
+                pattern="^[A-Z]{1}[a-z]+$"
+                title="Wprowadź poprawne nazwisko"
+                type="text"
+                name="recipient_surname"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <label for="recipient_street">Ulica</label>
+              <input
+                class="transparent-input"
+                id="recipient_street"
+                pattern="^[A-Z]{1}[a-z 0-9]+$"
+                title="Wprowadź poprawną ulicę"
+                type="text"
+                name="recipient_street"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <label for="recipient_city">Miasto</label>
+              <input
+                class="transparent-input"
+                id="recipient_city"
+                pattern="^[A-Z]{1}[a-z]+$"
+                title="Wprowadź poprawne miasto"
+                type="text"
+                name="recipient_city"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <label for="recipient_postal_code">Kod pocztowy</label>
+              <input
+                class="transparent-input"
+                id="recipient_postal_code"
+                pattern="^([0-9]{2})([\-]{1}[0-9]{3})?$"
+                title="Wprowadź poprawny kod pocztowy"
+                type="text"
+                name="recipient_postal_code"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <label for="recipient_country">Kraj</label>
+              <input
+                class="transparent-input"
+                id="recipient_country"
+                pattern="^[A-Z]{1}[a-z]+$"
+                title="Wprowadź poprawny kraj"
+                type="text"
+                name="recipient_country"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <label for="recipient_phone_number">Numer telefonu</label>
+              <input
+                class="transparent-input"
+                id="recipient_phone_number"
+                pattern="^[0-9 ]+$"
+                title="Wprowadź poprawny numer telefonu"
+                type="text"
+                name="recipient_phone_number"
+                required
+              />
+            </li>
+
+            <li class="form-row">
+              <input id="submit" type="submit" value="Wyślij" />
+            </li>
+          </ul>
+        </form>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <hr />
+      <p>&copy; 2020 Jakub Jackowski</p>
+    </footer>
+  </body>
+</html>
